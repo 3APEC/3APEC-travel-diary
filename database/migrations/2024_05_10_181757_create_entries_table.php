@@ -14,12 +14,14 @@ return new class extends Migration
     {
         Schema::create('entries', function (Blueprint $table) {
             $table->id();
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('destination_id')->references('id')->on('destinations');
+            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('destination_id')->unsigned();
             $table->string('caption');
             $table->text('text');
-            $table->boolean('deleted');
+            $table->boolean('deleted')->default('0');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('destination_id')->references('id')->on('destinations');
         });
     }
 
