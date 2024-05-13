@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('entry_ratings', function (Blueprint $table) {
             $table->id();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('entry_id')->references('id')->on('entries');
+            $table->boolean('like');
+            $table->boolean('dislike');
             $table->timestamps();
         });
     }
