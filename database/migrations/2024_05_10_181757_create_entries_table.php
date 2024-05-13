@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Destination;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -14,14 +15,12 @@ return new class extends Migration
     {
         Schema::create('entries', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned();
-            $table->bigInteger('destination_id')->unsigned();
+            $table->foreignIdFor(User::class);
+            $table->foreignIdFor(Destination::class);
             $table->string('caption');
             $table->text('text');
             $table->boolean('deleted')->default('0');
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('destination_id')->references('id')->on('destinations');
         });
     }
 
