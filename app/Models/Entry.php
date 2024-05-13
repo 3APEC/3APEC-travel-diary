@@ -15,4 +15,17 @@ class Entry extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function rating(): HasMany
+    {
+        return $this->hasMany(EntryRating::class);
+    }
+
+    // TODO: Add Function for Comments when implemented
+
+    // public function comments(): HasMany
+    // {
+    //     return $this->hasMany();
+    // }
+
 }
