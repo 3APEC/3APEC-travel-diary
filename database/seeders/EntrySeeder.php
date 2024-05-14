@@ -18,10 +18,12 @@ class EntrySeeder extends Seeder
         $destinations = Destination::all();
         $users = User::all();
         foreach($destinations as $destination) {
-            Entry::factory()->create([
-                "destination_id" => $destination->id,
-                "user_id" => $users->random()->id
-            ]);
+            for($i = 0; $i < 40; $i++) {
+                Entry::factory()->create([
+                    "destination_id" => $destination->id,
+                    "user_id" => $users->random()->id
+                ]);
+            }
         }
 
     }

@@ -17,7 +17,7 @@ class EntryFactory extends Factory
     public function definition(): array
     {
         return [
-            'caption' => fake()->title(),
+            'caption' => fake()->words(3, true),
             'text' => fake()->text(),
             'deleted' => fake()->boolean()
         ];
