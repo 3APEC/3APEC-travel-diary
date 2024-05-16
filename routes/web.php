@@ -9,7 +9,11 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::redirect('/', '/destinations');
+//Route::redirect('/', '/destinations');
+
+Route::get('/', function(){
+    return view('home');
+})->name('home');
 
 // Destinations
 Route::get('/destinations', [DestinationController::class, 'index'])->name('destinations.index');
