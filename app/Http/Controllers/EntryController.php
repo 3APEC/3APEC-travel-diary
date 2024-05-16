@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class EntryController extends Controller
 {
+
     public function index(Destination $destination)
     {
         return view('entries',[
@@ -19,6 +20,22 @@ class EntryController extends Controller
     public function show(Destination $destination, Entry $entry){
         return view('entry', [
             'entry' => Entry::findorfail($entry->id),
+        ]);
+    }
+
+    public function store(Destination $destination, Request $request)
+    {
+        $entry = Entry::create([
+            ...$request->validate([
+                'caption' => 'required',
+                'text' => 'required',
+            ]),
+            'destination_id' => $destination->id,
+            'user_id' => $request->user()->id,
+        ]);
+
+        return view('entry', [
+            'entry' => $entry,
         ]);
     }
 }
