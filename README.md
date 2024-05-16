@@ -7,10 +7,15 @@
 
 ## Fetch required dependencies
 1. Open Terminal inside the project-folder
-2. Run following command
+2. Install Composer-Packages
 ```bash
 composer require vendor/package
 ```
+3. Install Node-Packages
+```bash
+npm install
+```
+
 
 ## Run Docker
 1. Open Terminal inside the project-folder
