@@ -5,9 +5,11 @@ use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\EntryController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::redirect('/', '/destinations');
 
 // Destinations
 Route::get('/destinations', [DestinationController::class, 'index'])->name('destinations.index');

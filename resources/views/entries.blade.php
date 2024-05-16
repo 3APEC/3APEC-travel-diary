@@ -1,8 +1,4 @@
-@extends('layouts.app')
 
-@section('title', $destination->name)
-
-@section('content')
 <div>
     @forelse ($entries as $entry)
         <a href="{{ route('entries.show', ['entry' => $entry,'destination' => $destination]) }}">
@@ -12,4 +8,3 @@
         <p>No entries found</p>
     @endforelse
 </div>
-@endsection
