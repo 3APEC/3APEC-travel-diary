@@ -7,4 +7,6 @@
     @empty
         <p>No entries found</p>
     @endforelse
+
+    <a href="{{ route('entries.create', ['destination' => $destination]) }}">Create a new entry</a>
 </div>
