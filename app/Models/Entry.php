@@ -11,6 +11,13 @@ class Entry extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'caption',
+        'text',
+        'destination_id',
+        'user_id',
+    ];
+
     public function user(): BelongsTo 
     {
         return $this->belongsTo(User::class);

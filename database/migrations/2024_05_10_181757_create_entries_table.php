@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(User::class);
             $table->foreignIdFor(Destination::class);
-            $table->string('caption');
-            $table->text('text');
+            $table->string('caption', 255);
+            $table->string('text',5000);
             $table->boolean('deleted')->default('0');
             $table->timestamps();
         });

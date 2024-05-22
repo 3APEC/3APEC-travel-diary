@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Entry;
 use App\Models\Destination;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class EntryController extends Controller
 {
@@ -27,12 +29,32 @@ class EntryController extends Controller
     {
         $entry = Entry::create([
             ...$request->validate([
-                'caption' => 'required',
-                'text' => 'required',
+                'caption' => ['required','string','max:255'],
+                'text' => ['required','string'],
             ]),
             'destination_id' => $destination->id,
-            'user_id' => $request->user()->id,
+            'user_id' => auth()->id(),
         ]);
+
+
+
+        return view('entry', [
+            'entry' => $entry,
+        ]);
+    }
+    public function create(Destination $destination): View
+    {
+        return view('entryform', [
+            'destination' => $destination,
+        ]);
+    }
+
+    public function update(Request $request, Entry $entry)
+    {
+        $entry->update($request->validate([
+            'caption' => ['required','string','max:255'],
+            'text' => ['required','string'],
+        ]));
 
         return view('entry', [
             'entry' => $entry,
