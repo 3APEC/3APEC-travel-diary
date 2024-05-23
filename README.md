@@ -36,8 +36,12 @@ docker compose up -d
 ## Start Dev
 1. Open Terminal inside the project-folder
 2. Make sure Docker is running 
-3. To start run this command
+3. To start project run this:
 ```bash
 php artisan serve
 ````
+
+```bash
+npm run dev
+```
 
