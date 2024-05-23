@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Entry;
 use App\Models\Destination;
 use App\Models\User;
+use Brick\Math\BigInteger;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -22,6 +23,7 @@ class EntryController extends Controller
     public function show(Destination $destination, Entry $entry){
         return view('entry', [
             'entry' => Entry::findorfail($entry->id),
+            'destination' => $destination,
         ]);
     }
 
@@ -40,6 +42,7 @@ class EntryController extends Controller
 
         return view('entry', [
             'entry' => $entry,
+            'destination' => $destination
         ]);
     }
     public function create(Destination $destination): View
@@ -49,8 +52,9 @@ class EntryController extends Controller
         ]);
     }
 
-    public function update(Request $request, Entry $entry)
+    public function update(Destination $destination, int $id, Request $request )
     {
+        $entry = Entry::findorfail($id);
         $entry->update($request->validate([
             'caption' => ['required','string','max:255'],
             'text' => ['required','string'],
@@ -58,6 +62,7 @@ class EntryController extends Controller
 
         return view('entry', [
             'entry' => $entry,
+            'destination' => $destination,
         ]);
     }
 }
