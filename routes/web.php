@@ -39,6 +39,12 @@ Route::middleware('auth')->group(function(){
     Route::put('/destinations/{destination}/entries/{entry}/update', [EntryController::class, 'update'])->name('entries.update');
     
     Route::post('/destinations/{destination}/entries/store', [EntryController::class, 'store'])->name('entries.store');
+
+    Route::get('/destinations/create', function(){
+        return view('destinationform');
+    })->name('destinations.create');
+
+    Route::post('/destinations/store', [DestinationController::class, 'store'])->name('destinations.store');
 });
 // Destinations
 Route::get('/destinations', [DestinationController::class, 'index'])->name('destinations.index');

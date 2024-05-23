@@ -24,4 +24,27 @@ class DestinationController extends Controller
         ]);
     }
 
+    public function store(Request $request)
+    {
+        $destination = Destination::create($request->validate([
+            'name' => ['required','string','max:255'],
+        ]));
+
+        return view('destination', [
+            'destination' => $destination
+        ]);
+    }
+
+    public function update(Destination $destination, Request $request)
+    {
+        $destination->update($request->validate([
+            'name' => ['required','string','max:255'],
+            'description' => ['required','string'],
+        ]));
+
+        return view('destination', [
+            'destination' => $destination
+        ]);
+    }
+
 }
