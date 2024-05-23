@@ -1,7 +1,7 @@
 
-<div>
+<x-app-layout>
     @forelse ($entries as $entry)
-        <a href="{{ route('entries.show', ['entry' => $entry,'destination' => $destination]) }}">
+        <a href="{{ route('entries.show', ['destination' => $destination,'entry' => $entry]) }}">
             <h3>{{ $entry->caption }}</h3>
         <br />
     @empty
@@ -9,4 +9,4 @@
     @endforelse
 
     <a href="{{ route('entries.create', ['destination' => $destination]) }}">Create a new entry</a>
-</div>
+</x-app-layout>

@@ -29,12 +29,15 @@ Route::middleware('auth')->group(function(){
         ]);
     })->name('entries.create');
 
-    Route::get('/destinations/{destination}/entries/{entry}/edit', function(Destination $destination, Entry $entry){
+    Route::get('/destinations/{destination}/entries/{entry}/edit', function(Destination $destination, Entry $entry) {
         return view('entryform', [
             'destination' => $destination,
             'entry' => $entry,
         ]);
     })->name('entries.edit');
+
+    Route::put('/destinations/{destination}/entries/{entry}/update', [EntryController::class, 'update'])->name('entries.update');
+    
     Route::post('/destinations/{destination}/entries/store', [EntryController::class, 'store'])->name('entries.store');
 });
 // Destinations
