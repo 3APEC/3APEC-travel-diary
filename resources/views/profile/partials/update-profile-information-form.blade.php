@@ -47,6 +47,16 @@
             @endif
         </div>
 
+        <div>
+            <x-input-label for="role_id" :value="__('Role')" />
+            <select id="role_id" name="role_id" class="mt-1 block w-full" required>
+                @foreach ($roles as $role)
+                    <option value="{{ $role->id }}" @if ($role->id === old('role_id', $user->role_id)) selected @endif>{{ $role->name }}</option>
+                @endforeach
+            </select>
+            
+        </div>
+
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 
