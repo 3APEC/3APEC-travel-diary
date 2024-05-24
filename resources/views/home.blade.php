@@ -11,6 +11,6 @@
     </head>
     <body>
         @include('layouts.navbar') 
-        
+        @include('layouts.searchview') 
     </body>
 </html>
