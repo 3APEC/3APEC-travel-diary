@@ -1,4 +1,23 @@
 <x-app-layout>
+    <div>
+        <form method="POST" action="{{ route('entries.like', ['entry' => $entry, 'destination' => $destination]) }}">
+            @csrf
+
+            @method('PUT')
+
+            <button type="submit">Like {{ $entry->likes()->count() }}</button>
+        </form>
+
+        <form method="POST" action="{{ route('entries.dislike', ['entry' => $entry, 'destination' => $destination]) }}">
+            @csrf
+
+            @method('PUT')
+
+            <button type="submit">Dislike {{ $entry->dislikes()->count() }}</button>
+        </form>
+
+    </div>
+
     <h2>{{ $entry->caption }}</h2>
     <p>{{ $entry->text }}</p>
 

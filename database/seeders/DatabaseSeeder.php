@@ -37,6 +37,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(DestinationSeeder::class);
         $this->call(EntrySeeder::class);
+        $this->call(EntryRatingSeeder::class);
 
         
     }

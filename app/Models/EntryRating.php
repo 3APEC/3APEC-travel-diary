@@ -10,6 +10,8 @@ class EntryRating extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['rating', 'dislike', 'like', 'user_id'];
+
     public function entry(): BelongsTo
     {
         return $this->belongsTo(Entry::class);

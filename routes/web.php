@@ -4,12 +4,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\EntryController;
 use App\Http\Controllers\UserController;
-use App\Models\Destination;
-use App\Models\Entry;
-use App\Models\Role;
-use App\Models\User;
-use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EntryRatingController;
 
 Route::get('/', function(){
     return view('home');
@@ -39,6 +35,10 @@ Route::middleware('auth')->group(function(){
 
     Route::put('/admin/users/{user}/update', [UserController::class, 'update'])->name('users.update');
     Route::delete('/admin/users/{user}/delete', [UserController::class, 'destroy'])->name('users.destroy');
+
+    Route::put('/destinations/{destination}/entries/{entry}/like', [EntryRatingController::class, 'like'])->name('entries.like');
+    Route::put('/destinations/{destination}/entries/{entry}/dislike', [EntryRatingController::class, 'dislike'])->name('entries.dislike');
+
 
 });
 

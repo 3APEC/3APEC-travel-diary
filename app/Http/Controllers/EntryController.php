@@ -31,6 +31,7 @@ class EntryController extends Controller
 
     public function store(Destination $destination, Request $request)
     {   
+        $lastEntry = Entry::where('destination_id', $destination->id)->orderBy('id', 'desc')->first();
         $entry = Entry::create([
             ...$request->validate([
                 'caption' => ['required','string','max:255'],
@@ -38,6 +39,7 @@ class EntryController extends Controller
             ]),
             'destination_id' => $destination->id,
             'user_id' => auth()->id(),
+            'id' => $lastEntry->id + 1,
         ]);
 
 
