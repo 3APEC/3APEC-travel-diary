@@ -1,29 +1,3 @@
-{{-- <nav class="hidden sm:ml-6 sm:block">
-    <div class="flex-initial">
-        <x-navbar-link class="" href="{{ route('home') }}" :active="request()->routeIs('home')">Home</x-navbar-link>
-    </div>
-    <div class="flex-initial">
-        <x-navbar-link href="{{ route('destinations.index') }}" :active="request()->routeIs('destinations.index')">Destinations</x-navbar-link>
-    </div>
-    <div>
-        @if (Auth::check())
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-                <x-navbar-link href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">Logout</x-navbar-link>
-            </form>
-            <x-navbar-link href="{{ route('profile.edit') }}">{{ Auth::getUser()->name }}</x-navbar-link>
-        @else
-            <div>
-                <x-navbar-link href="{{ route('login') }}">Login</x-navbar-link>
-            </div>
-            <div>
-                <x-navbar-link href="{{ route('register') }}">Register</x-navbar-link>
-            </div>
-        @endif
-    </div>
-
-</nav> --}}
-
 <nav class="bg-gray-800">
   <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
       <div class="relative flex h-16 items-center justify-between">
@@ -89,6 +63,7 @@
   <div class="sm:hidden" id="mobile-menu">
       <div class="space-y-1 px-2 pb-3 pt-2">
           <x-navbar-link href="{{ route('home') }}" :active="request()->routeIs('home')" class="block text-base">Home</x-navbar-link>
+          {{-- <x-navbar-link href="{{ route('search') }}" :active="request()->routeIs('home')" class="block text-base">Search</x-navbar-link> --}}
           <x-navbar-link href="{{ route('destinations.index') }}" :active="request()->routeIs('destinations.index')" class="block text-base">Destinations</x-navbar-link>
       </div>
   </div>
