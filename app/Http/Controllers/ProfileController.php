@@ -57,4 +57,10 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+    
+    public function show(Request $request)
+    {
+        $user = Auth::user();
+        return view('users.profileform', compact('user'));
+    }
 }

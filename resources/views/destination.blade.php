@@ -1,9 +1,9 @@
-{{-- <x-app-layout>
+<x-app-layout>
     <h2>{{ $destination->name }}</h2>
     <a href="{{ route('entries.index', ['destination' => $destination]) }}">Entries</a>
-</x-app-layout> --}}
+</x-app-layout>
 
-<x-app-layout>
+{{-- <x-app-layout>
     <br>
     <div class="max-w-4xl mx-auto">
         @forelse ($destinations as $destination)
@@ -32,4 +32,4 @@
         </div>
         @endforelse
     </div>
-</x-app-layout>
+</x-app-layout> --}}

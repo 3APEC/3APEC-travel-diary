@@ -16,11 +16,15 @@ use Illuminate\Support\Facades\Route;
 
 //Route::post('/destinations/{destination}/entries/store', [EntryController::class, 'store'])->name('entries.store');
 
+Route::get('/profileform', [ProfileController::class, 'show'])->name('profileform.show');
+
+Route::get('/signup', function(){
+    return view('users/signup');
+})->name('signup');
 
 Route::get('/', function(){
     return view('home');
 })->name('home');
-
 
 Route::middleware('auth')->group(function(){
     Route::get('/destinations/{destination}/entries/create', function(Destination $destination){
