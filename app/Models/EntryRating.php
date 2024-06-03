@@ -10,7 +10,8 @@ class EntryRating extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['rating', 'dislike', 'like', 'user_id'];
+    protected $primaryKey = ['entry_id', 'user_id'];
+    protected $fillable = ['isDislike', 'isLike', 'user_id', 'entry_id'];
 
     public function entry(): BelongsTo
     {

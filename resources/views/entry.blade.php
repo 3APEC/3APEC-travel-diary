@@ -6,6 +6,9 @@
             @method('PUT')
 
             <button type="submit">Like {{ $entry->likes()->count() }}</button>
+            @error('_token')
+                {{ $message }}
+            @enderror
         </form>
 
         <form method="POST" action="{{ route('entries.dislike', ['entry' => $entry, 'destination' => $destination]) }}">

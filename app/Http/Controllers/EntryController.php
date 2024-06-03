@@ -39,7 +39,7 @@ class EntryController extends Controller
             ]),
             'destination_id' => $destination->id,
             'user_id' => auth()->id(),
-            'id' => $lastEntry->id + 1,
+            //'id' => $lastEntry->id + 1,
         ]);
 
 
