@@ -8,8 +8,6 @@ use App\Models\User;
 use Brick\Math\BigInteger;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Class\PermissionClass;
 
 class EntryController extends Controller
 {
@@ -30,8 +28,7 @@ class EntryController extends Controller
     }
 
     public function store(Destination $destination, Request $request)
-    {   
-        $lastEntry = Entry::where('destination_id', $destination->id)->orderBy('id', 'desc')->first();
+    {
         $entry = Entry::create([
             ...$request->validate([
                 'caption' => ['required','string','max:255'],
@@ -39,7 +36,6 @@ class EntryController extends Controller
             ]),
             'destination_id' => $destination->id,
             'user_id' => auth()->id(),
-            //'id' => $lastEntry->id + 1,
         ]);
 
 
@@ -59,33 +55,14 @@ class EntryController extends Controller
     public function update(Destination $destination, int $id, Request $request )
     {
         $entry = Entry::findorfail($id);
+        $entry->update($request->validate([
+            'caption' => ['required','string','max:255'],
+            'text' => ['required','string'],
+        ]));
 
-        if(PermissionClass::checkPermissionForEntry(1, $entry)){
-            $entry->update($request->validate([
-                'caption' => ['required','string','max:255'],
-                'text' => ['required','string'],
-            ]));
-
-            return view('entry', [
-                'entry' => $entry,
-                'destination' => $destination,
-            ]);
-        }
-        else{
-            return redirect('home')->with('error', 'You are not allowed to do that!');
-        }
-    }
-
-    public function edit(Destination $destination, Entry $entry): View
-    {
-        if(PermissionClass::checkPermissionForEntry(1, $entry)){
-            return view('entryform', [
-                'destination' => $destination,
-                'entry' => $entry,
-            ]);
-        }
-        else{
-            return redirect('home')->with('error', 'You are not allowed to do that!');
-        }
+        return view('entry', [
+            'entry' => $entry,
+            'destination' => $destination,
+        ]);
     }
 }
