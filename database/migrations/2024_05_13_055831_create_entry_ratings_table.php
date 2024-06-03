@@ -14,12 +14,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('entry_ratings', function (Blueprint $table) {
-            $table->id();
             $table->foreignIdFor(User::class);
             $table->foreignIdFor(Entry::class);
-            $table->boolean('like')->default('0');
-            $table->boolean('dislike')->default('0');
+            $table->boolean('isLike')->default('0');
+            $table->boolean('isDislike')->default('0');
             $table->timestamps();
+            $table->primary(['user_id', 'entry_id']);
         });
     }
 

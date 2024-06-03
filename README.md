@@ -1,3 +1,10 @@
+# Current State
+
+The current changes of the developers have to be documented in the ["docs"](./docs/)
+
+Schema for the Nameing is "MM-TT-User" for example "05-23-TeekunDev"
+
+
 # How to get the project running
 
 ## Requirements
