@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Travel Diary</title>
+    <title>Destinations - Travel Diary</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -9,7 +9,7 @@
 </head>
 <body>
     <x-app-layout>
-        <br>
+        <br />
         <div class="max-w-4xl mx-auto">
             @forelse ($destinations as $destination)
             <a href="{{ route('destinations.show', ['destination' => $destination]) }}" id="clickableSection" class="block bg-white shadow-md rounded-lg overflow-hidden transform transition-transform duration-300 hover:scale-105">
@@ -27,7 +27,7 @@
                     </div>
                 </section>
             </a>
-            <br />
+            <br/>
             @empty
             <div class="red">
                 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">

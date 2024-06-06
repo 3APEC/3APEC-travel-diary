@@ -23,17 +23,18 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Clicked outside.');  // Debugging log
         }
     });
+
+    displayRatings();
+
+    document.getElementById('clickableSection').addEventListener('click', function (event) {
+        event.preventDefault();
+        const entriesSection = document.getElementById('entriesSection');
+        entriesSection.classList.toggle('hidden');
+        if (!entriesSection.classList.contains('hidden')) {
+            displayRatings();
+        }
+    });
   });
-
-
-  document.getElementById('clickableSection').addEventListener('click', function(event) {
-    event.preventDefault();
-    const entriesSection = document.getElementById('entriesSection');
-    entriesSection.classList.toggle('hidden');
-    if (!entriesSection.classList.contains('hidden')) {
-        displayRatings();
-    }
-});
 
 const ratings = [5, 4, 3, 5, 4.5];  // Example ratings
 const starIcons = {
@@ -42,7 +43,7 @@ const starIcons = {
     empty: '<i class="far fa-star text-yellow-500"></i>'
 };
 
-function displayRatings() {
+export function displayRatings() {
     const ratingsList = document.getElementById('ratingsList');
     ratingsList.innerHTML = '';
     let totalRating = 0;
