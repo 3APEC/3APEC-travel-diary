@@ -3,6 +3,3 @@
     <a href="{{ route('entries.index', ['destination' => $destination]) }}">Entries</a>
 </x-app-layout>
 
-
-
-
