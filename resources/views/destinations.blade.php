@@ -4,11 +4,17 @@
     <title>Destinations - Travel Diary</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
     <x-app-layout>
+        <div>
+          @if (Auth::check())
+              @if (Auth::getUser()->role_id <= 1)
+                  <a href="{{ route('destinations.create') }}">Add a new destination</a> <br />
+              @endif
+          @endif
+        </div>
         <br />
         <div class="max-w-4xl mx-auto">
             @forelse ($destinations as $destination)
@@ -41,3 +47,4 @@
     </x-app-layout>
 </body>
 </html>
+

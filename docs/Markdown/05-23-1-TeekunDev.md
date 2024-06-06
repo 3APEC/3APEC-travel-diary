@@ -1,4 +1,4 @@
-### Current State
+### Changelog
 
 - Basic not properly styled Layout for Navigationbar
 - Fixed Base Layout (app.layout)
