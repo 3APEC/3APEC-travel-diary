@@ -1,0 +1,10 @@
+version: "3"
+services:
+  travel-diary:
+    build:
+      context: .
+    container_name: "travel-diary"
+    restart: unless-stopped
+    volumes:
+      - .:/app
+  
