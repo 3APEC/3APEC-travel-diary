@@ -7,16 +7,17 @@ Schema for the Nameing is "MM-TT-User" for example "05-23-TeekunDev"
 
 # How to get the project running
 
-## Requirements
+### Requirements
 - PHP 8.*
 - Composer
 - Docker
+- NPM
 
-## Fetch required dependencies
+### Fetch required dependencies
 1. Open Terminal inside the project-folder
 2. Install Composer-Packages
 ```bash
-composer require vendor/package
+composer install
 ```
 3. Install Node-Packages
 ```bash
@@ -24,16 +25,19 @@ npm install
 ```
 
 
-## Run Docker
+## Dev Environment
+### Setup a Database-Server
+
 1. Open Terminal inside the project-folder
 2. Run following command
 ```bash
 docker compose up -d
 ````
+3. Rename the `.env.example` to `.env`
 
-> Note: You are responsible for your own database permissions. I recommend not using the database root
+> This compose file has phpmyadmin included if you don't need it remove the whole block
 
-## Start Dev
+### Start Dev-Server
 1. Open Terminal inside the project-folder
 2. Make sure Docker is running 
 3. To start project run this:
@@ -45,3 +49,15 @@ php artisan serve
 npm run dev
 ```
 
+## Production Deployment
+
+The Dockerfile is incomplete and might change in the future. Right now you'll need to configure the Database yourself.
+
+It is recommended to look at the config-docs of Laravel to understand how it works.
+
+### Docker Deployment
+
+Run this
+```bash
+docker compose up -d
+```
