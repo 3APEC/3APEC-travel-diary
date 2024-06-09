@@ -9,11 +9,6 @@ use App\Http\Controllers\EntryRatingController;
 
 Route::get('/profileform', [ProfileController::class, 'show'])->name('profileform.show');
 
-Route::get('/signup', function(){
-    return view('users/signup');
-})->name('signup');
-
-
 Route::get('/', function(){
     return view('home');
 })->name('home');
