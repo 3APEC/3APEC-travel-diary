@@ -12,11 +12,13 @@
           @if (Auth::check())
               @if (Auth::getUser()->role_id <= 1)
                   <a href="{{ route('destinations.create') }}">Add a new destination</a> <br />
+                  <a href="{{ route('destinationRequests.index') }}">View Destination Requests</a>
               @endif
           @endif
         </div>
         <br />
         <div class="max-w-4xl mx-auto">
+            <a href="{{ route('destinationRequests.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Request a new Destination</a>
             @forelse ($destinations as $destination)
             <a href="{{ route('destinations.show', ['destination' => $destination]) }}" id="clickableSection" class="block bg-white shadow-md rounded-lg overflow-hidden transform transition-transform duration-300 hover:scale-105">
                 <section>
