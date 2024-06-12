@@ -8,41 +8,47 @@
 </head>
 <body>
     <x-app-layout>
-        <div>
-          @if (Auth::check())
-              @if (Auth::getUser()->role_id <= 1)
-                  <a href="{{ route('destinations.create') }}">Add a new destination</a> <br />
-              @endif
-          @endif
-        </div>
-        <br />
-        <div class="max-w-4xl mx-auto">
-            @forelse ($destinations as $destination)
-            <a href="{{ route('destinations.show', ['destination' => $destination]) }}" id="clickableSection" class="block bg-white shadow-md rounded-lg overflow-hidden transform transition-transform duration-300 hover:scale-105">
-                <section>
-                    <header class="bg-gray-800 text-white py-4 px-6">
-                        <h1 class="text-2xl font-bold">{{ $destination->name }}</h1>
-                        <div id="overallRating" class="mt-2 text-lg">
-                            Overall Rating: <span id="averageRating" class="text-yellow-500">4.5</span>
-                        </div>
-                    </header>
-                    <div class="p-6">
-                        <p class="text-gray-700 mb-4">
-                            This is the content area of the section. Here, you can add paragraphs, images, and other elements.
-                        </p>
-                    </div>
-                </section>
-            </a>
-            <br/>
-            @empty
-            <div class="red">
-                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                    <span class="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3">Error</span>
-                    <span class="font-semibold mr-2 text-left flex-auto">No data found!</span>
-                    <svg class="fill-current opacity-75 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"/></svg>
+        <div class="container mx-auto px-4">
+            @if (Auth::check() && Auth::user()->role_id <= 1)
+                <div class="flex justify-end my-4">
+                    <a href="{{ route('destinations.create') }}" class="inline-block bg-green-500 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+                        Add a New Destination
+                    </a>
                 </div>
+            @endif
+
+            <br>
+            <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                @forelse ($destinations as $destination)
+                    <a href="{{ route('entries.index', ['destination' => $destination]) }}" class="block bg-white shadow-md rounded-lg overflow-hidden transform transition-transform duration-300 hover:scale-105 hover:shadow-xl">
+                        <div class="relative">
+                            <img src="https://via.placeholder.com/300" alt="{{ $destination->name }}" class="w-full h-48 object-cover">
+                            <div class="absolute bottom-0 left-0 w-full bg-black bg-opacity-50 text-white py-2 px-4">
+                                <h2 class="text-xl font-bold">{{ $destination->name }}</h2>
+                                <p class="mt-1">Entries: <span class="text-yellow-400">{{ $destination->entries->count() }}</span></p>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <p class="text-gray-700">
+                                Discover the experiences shared by travelers about this destination.
+                            </p>
+                            @if ($latestEntry = $destination->entries->sortByDesc('created_at')->first())
+                                <p class="mt-2 text-gray-500 text-sm">
+                                    Latest entry by <strong>{{ $latestEntry->user->name }}</strong>:
+                                    "{{ \Illuminate\Support\Str::limit($latestEntry->caption, 50) }}"
+                                </p>
+                            @endif
+                        </div>
+                    </a>
+                @empty
+                    <div class="col-span-full">
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg relative" role="alert">
+                            <strong class="font-bold">Error:</strong>
+                            <span class="block sm:inline">No destinations found!</span>
+                        </div>
+                    </div>
+                @endforelse
             </div>
-            @endforelse
         </div>
     </x-app-layout>
 </body>

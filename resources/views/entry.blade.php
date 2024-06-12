@@ -1,33 +1,49 @@
-<x-app-layout>
-    <div>
-        <form method="POST" action="{{ route('entries.like', ['entry' => $entry, 'destination' => $destination]) }}">
-            @csrf
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Entry Details - Travel Diary</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+<body>
+    <x-app-layout>
+        <div class="container mx-auto px-4 py-6">
+            <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+                <h2 class="text-3xl font-bold mb-4">{{ $entry->caption }}</h2>
+                <p class="text-gray-700 mb-6">{{ $entry->text }}</p>
 
-            @method('PUT')
+                <div class="flex space-x-4 mb-4">
+                    <form method="POST" action="{{ route('entries.like', ['entry' => $entry, 'destination' => $destination]) }}">
+                        @csrf
+                        @method('PUT')
+                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300">
+                            Like {{ $entry->likes()->count() }}
+                        </button>
+                        <p class="mt-2 text-sm">{{ $entry->isLiked() ? 'You liked this' : '' }}</p>
+                    </form>
 
-            <button type="submit">Like {{ $entry->likes()->count() }}</button>
-            <p>{{ $entry->isLiked() ? 'True' : 'False' }}</p>
-        </form>
+                    <form method="POST" action="{{ route('entries.dislike', ['entry' => $entry, 'destination' => $destination]) }}">
+                        @csrf
+                        @method('PUT')
+                        <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300">
+                            Dislike {{ $entry->dislikes()->count() }}
+                        </button>
+                        <p class="mt-2 text-sm">{{ $entry->isDisliked() ? 'You disliked this' : '' }}</p>
+                    </form>
+                </div>
 
-        <form method="POST" action="{{ route('entries.dislike', ['entry' => $entry, 'destination' => $destination]) }}">
-            @csrf
-
-            @method('PUT')
-
-            <button type="submit">Dislike {{ $entry->dislikes()->count() }}</button>
-            <p>{{ $entry->isDisliked() ? 'True' : 'False' }}</p>
-        </form>
-
-    </div>
-
-    <h2>{{ $entry->caption }}</h2>
-    <p>{{ $entry->text }}</p>
-
-    @if (Auth::check())
-        @if (Auth::getUser()->role_id <= 1 || Auth::getUser()->id === $entry->user_id)
-            <a href="{{ route('entries.edit', ['destination' => $destination, 'entry' => $entry]) }}">Edit</a>
-        @endif
-    @endif
-    
-</x-app-layout>
-
+                @if (Auth::check())
+                    @if (Auth::user()->role_id <= 1 || Auth::user()->id === $entry->user_id)
+                        <div class="flex justify-end">
+                            <a href="{{ route('entries.edit', ['destination' => $destination, 'entry' => $entry]) }}" class="bg-green-500 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300">
+                                Edit Entry
+                            </a>
+                        </div>
+                    @endif
+                @endif
+            </div>
+        </div>
+    </x-app-layout>
+</body>
+</html>
