@@ -6,12 +6,16 @@ use App\Http\Controllers\EntryController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EntryRatingController;
-
-Route::get('/profileform', [ProfileController::class, 'show'])->name('profileform.show');
+use App\Http\Controllers\PostController;
 
 Route::get('/', function(){
     return view('home');
 })->name('home');
+
+
+Route::get('/posts/create', [PostController::class, 'create']);
+Route::post('/posts', [PostController::class, 'store']);
+Route::get('/posts/{post}', [PostController::class, 'show']);
 
 // Only for authenticated users
 Route::middleware('auth')->group(function(){

@@ -66,3 +66,13 @@ function generateStars(rating) {
            (halfStar ? starIcons.half : '') +
            starIcons.empty.repeat(emptyStars);
 }
+
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
+document.addEventListener('DOMContentLoaded', function () {
+    ClassicEditor
+        .create(document.querySelector('#content'))
+        .catch(error => {
+            console.error(error);
+        });
+});
