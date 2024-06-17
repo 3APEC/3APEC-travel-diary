@@ -1,13 +1,5 @@
 <x-app-layout>
     <div class="container mx-auto px-4">
-        {{-- @if (Auth::check() && Auth::user()->role_id <= 1)
-            <div class="flex justify-end my-4">
-                <a href="{{ route('users.create') }}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">
-                    Add a New User
-                </a>
-            </div>
-        @endif --}}
-
         <br>
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             @foreach ($users as $user)
@@ -41,4 +33,5 @@
             </div>
         @endif
     </div>
+    <br>
 </x-app-layout>

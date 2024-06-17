@@ -32,12 +32,6 @@
                             <p class="text-gray-700">
                                 Discover the experiences shared by travelers about this destination.
                             </p>
-                            @if ($latestEntry = $destination->entries->sortByDesc('created_at')->first())
-                                <p class="mt-2 text-gray-500 text-sm">
-                                    Latest entry by <strong>{{ $latestEntry->user->name }}</strong>:
-                                    "{{ \Illuminate\Support\Str::limit($latestEntry->caption, 50) }}"
-                                </p>
-                            @endif
                         </div>
                     </a>
                 @empty
