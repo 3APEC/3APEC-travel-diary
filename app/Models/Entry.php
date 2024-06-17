@@ -53,11 +53,7 @@ class Entry extends Model
         return $this->dislikes()->where('user_id', auth()->id())->exists();
     }
 
-    // TODO: Add Function for Comments when implemented
-
-    // public function comments(): HasMany
-    // {
-    //     return $this->hasMany();
-    // }
-
+    public function comments() {
+        return $this->hasMany(Comment::class);
+    }
 }
