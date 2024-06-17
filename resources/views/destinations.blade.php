@@ -30,7 +30,7 @@
                     </header>
                     <div class="p-6">
                         <p class="text-gray-700 mb-4">
-                            This is the content area of the section. Here, you can add paragraphs, images, and other elements.
+                            {{ $destination->shortDescription }}
                         </p>
                     </div>
                 </section>

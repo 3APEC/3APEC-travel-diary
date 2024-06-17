@@ -7,6 +7,8 @@ use App\Http\Controllers\EntryController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EntryRatingController;
+use App\Http\Controllers\SearchboxController;
+use App\Models\User;
 
 Route::get('/profileform', [ProfileController::class, 'show'])->name('profileform.show');
 
@@ -56,6 +58,14 @@ Route::middleware('auth')->group(function(){
 // Destinations
 Route::get('/destinations', [DestinationController::class, 'index'])->name('destinations.index');
 Route::get('/destinations/{destination}', [DestinationController::class, 'show'])->name('destinations.show');
+
+Route::post('/search', [SearchboxController::class, 'search'])->name('search');
+Route::get('/profile/{user}', function(User $user){
+    return view('userProfile',[
+        'user' => $user
+    ]);
+
+})->name('profile.show');
 
 
 // Destination Entries

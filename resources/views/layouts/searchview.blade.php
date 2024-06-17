@@ -8,14 +8,38 @@
                 <p class="mt-1 text-sm text-gray-600">Find what you're looking for.</p>
             </div>
             <div class="mt-5 md:col-span-2 md:mt-0">
-                <form action="#" method="POST">
+                <form action="{{ route('search') }}" method="POST">
+                    @csrf
                     <div class="shadow sm:overflow-hidden sm:rounded-md">
                         <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
                             <div>
                                 <label for="search" class="block text-sm font-medium text-gray-700">Search</label>
                                 <input type="text" name="search" id="search" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                             </div>
+                            <!-- TODO: Artur reperier das -->
+                            <div class="flex space-x-14">
+                                <div class="flex items-center space-y-4">
+                                    <label for="withoutEntries" class="m-3 p-2">Entries</label>
+                                    <input type="checkbox" class="h-2 w-2 rounded-md" name="withoutEntries">
+                                </div>
+                                <div class="flex space-y-3 items-center">
+                                    <label for="withoutUsers" class="m-3 p-2">User</label>
+                                    <input type="checkbox" class="h-2 w-2 rounded-md" name="withoutUsers">
+                                </div>
+                                <div class="flex space-y-3 items-center">
+                                    <label for="withoutDestinations" class="m-3 p-2">Destinations</label>
+                                    <input type="checkbox" class="h-2 w-2 rounded-md" name="withoutDestinations">
+                                </div>
+                            </div>
                         </div>
+
+                        @error('withoutEntries')
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                <strong class="font-bold">Error!</strong>
+                                <span class="block sm:inline">{{ $message }}</span>
+                            </div>
+                        @enderror
+                    
                         <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
                             <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Search</button>
                         </div>
