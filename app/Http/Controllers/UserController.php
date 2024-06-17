@@ -14,7 +14,7 @@ class UserController extends Controller
     {
         if(PermissionClass::checkPermission(1)){
             return view('users', [
-                'users' => User::all(),
+                'users' => User::all()->where('deleted', 0),
             ]);
         }
         else{
@@ -41,7 +41,12 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         if(PermissionClass::checkPermission(1)){
-            $user->delete();
+            $user->deleted = 1;
+            $user->name = 'Deleted User';
+            $user->email = '';
+            
+            $user->save();
+
             return redirect()->route('users.index')->with('success', 'User deleted successfully.');
         }
         else{

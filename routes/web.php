@@ -7,6 +7,7 @@ use App\Http\Controllers\EntryController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EntryRatingController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\SearchboxController;
 use App\Models\User;
 
@@ -16,10 +17,15 @@ Route::get('/signup', function(){
     return view('users/signup');
 })->name('signup');
 
-
 Route::get('/', function(){
     return view('home');
 })->name('home');
+
+Route::post('/entries/{entry}/comments', [CommentController::class, 'store'])->name('comments.store');
+
+Route::get('/posts/create', [PostController::class, 'create']);
+Route::post('/posts', [PostController::class, 'store']);
+Route::get('/posts/{post}', [PostController::class, 'show']);
 
 // Only for authenticated users
 Route::middleware('auth')->group(function(){
