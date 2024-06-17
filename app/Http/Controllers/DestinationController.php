@@ -29,11 +29,14 @@ class DestinationController extends Controller
         if(PermissionClass::checkPermission(1)){
             $destination = Destination::create($request->validate([
                 'name' => ['required','string','max:255'],
+                'shortDescription' => ['required','string'],
             ]));
 
             return view('destination', [
                 'destination' => $destination
             ]);   
+        } else {
+            return PermissionClass::returnPermissionError('home');
         }
     }
 
@@ -49,9 +52,16 @@ class DestinationController extends Controller
                 'destination' => $destination
             ]);
         } else {
-            return redirect()->route('home')->with('error', 'You do not have permission to update this page.');
+            return PermissionClass::returnPermissionError('home');
         }
-        
+       
     }
 
+    public function create()
+    {
+        if(!PermissionClass::checkPermission(1)){
+            return PermissionClass::returnPermissionError('destinations.index');
+        }
+        return view('destinationform');
+    }
 }

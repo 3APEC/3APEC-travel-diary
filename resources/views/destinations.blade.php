@@ -9,12 +9,15 @@
 <body>
     <x-app-layout>
         <div class="container mx-auto px-4">
-            @if (Auth::check() && Auth::user()->role_id <= 1)
+            @if (Auth::check())
+              @if (Auth::getUser()->role_id <= 1)
                 <div class="flex justify-end my-4">
                     <a href="{{ route('destinations.create') }}" class="inline-block bg-green-500 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">
                         Add a New Destination
                     </a>
+                    <a href="{{ route('destinationRequests.index') }}">View Destination Requests</a>
                 </div>
+              @endif
             @endif
 
             <br>

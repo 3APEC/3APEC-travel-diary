@@ -58,6 +58,10 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
+    public function entryCount(): int
+    {
+        return $this->entries()->count();
+    }
     // TODO: Add Comments once implemented
     // public function comments(): HasMany
     // {

@@ -24,4 +24,8 @@ class PermissionClass
             return false;
         }
     }
+
+    public static function returnPermissionError($route){
+        return redirect()->route($route,'',401)->with('error', 'You do not have permission to view this page');
+    }
 }
