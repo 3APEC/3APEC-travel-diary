@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Class\PermissionClass;
 use App\Models\Destination;
-use App\Models\Entry;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -53,5 +52,4 @@ class DestinationController extends Controller
         }
         
     }
-
 }

@@ -4,11 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Entry;
 use App\Models\Destination;
-use App\Models\User;
-use Brick\Math\BigInteger;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Class\PermissionClass;
 
 class EntryController extends Controller

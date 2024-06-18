@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Destination;
 use App\Models\Entry;
-use App\Models\EntryRating;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class EntryRatingController extends Controller

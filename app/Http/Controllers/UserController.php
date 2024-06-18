@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Class\PermissionClass;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Role;
 
 class UserController extends Controller

@@ -19,6 +19,13 @@
 
             <br>
             <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                <!-- Add New Destination Request Button -->
+                @if (Auth::check() && Auth::user()->role_id > 1)
+                    <a href="{{ route('destinationrequest.create') }}" class="block bg-gray-500 text-white font-bold py-12 px-4 rounded-lg shadow-md transform transition-transform duration-300 hover:scale-105 hover:shadow-xl flex justify-center items-center text-3xl">
+                        +
+                    </a>
+                @endif
+
                 @forelse ($destinations as $destination)
                     <a href="{{ route('entries.index', ['destination' => $destination]) }}" class="block bg-white shadow-md rounded-lg overflow-hidden transform transition-transform duration-300 hover:scale-105 hover:shadow-xl">
                         <div class="relative">
@@ -44,6 +51,7 @@
                 @endforelse
             </div>
         </div>
+        <br>
     </x-app-layout>
 </body>
 </html>

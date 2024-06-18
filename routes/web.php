@@ -7,12 +7,18 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EntryRatingController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\DestinationRequestController;
+use App\Http\Controllers\CommentController;
 
 Route::get('/', function(){
     return view('home');
 })->name('home');
 
 Route::post('/entries/{entry}/comments', [CommentController::class, 'store'])->name('comments.store');
+
+Route::get('/destinationrequest', [DestinationRequestController::class, 'create'])->name('destinationrequest.create');
+Route::post('/destinationrequest', [DestinationRequestController::class, 'store'])->name('destinationrequest.store');
+
 
 Route::get('/posts/create', [PostController::class, 'create']);
 Route::post('/posts', [PostController::class, 'store']);
