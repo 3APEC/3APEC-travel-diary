@@ -67,7 +67,7 @@ function generateStars(rating) {
            starIcons.empty.repeat(emptyStars);
 }
 
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+//import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 document.addEventListener('DOMContentLoaded', function () {
     ClassicEditor
