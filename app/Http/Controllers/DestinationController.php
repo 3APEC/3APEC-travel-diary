@@ -32,8 +32,9 @@ class DestinationController extends Controller
                 'shortDescription' => ['required','string'],
             ]));
 
-            return view('destination', [
-                'destination' => $destination
+            return view('entries', [
+                'destination' => $destination,
+                'entries' => $destination->entries
             ]);   
         } else {
             return PermissionClass::returnPermissionError('home');

@@ -33,7 +33,7 @@
                         </div>
                         <div class="p-4">
                             <p class="text-gray-700">
-                                Discover the experiences shared by travelers about this destination.
+                                {{ $destination->shortDescription }}
                             </p>
                         </div>
                     </a>

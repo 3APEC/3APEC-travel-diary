@@ -44,16 +44,16 @@
                 @endif
             </div>
 
-            <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+            {{--<div class="bg-white shadow-md rounded-lg p-6 mb-6">
                 <h3 class="text-2xl font-bold mb-4">Comments</h3>
 
-                {{-- @foreach($entry->comments as $comment)
+                 @foreach($entry->comments as $comment)
                     <div class="border-b border-gray-200 py-4">
                         <p class="text-gray-700"><strong>{{ $comment->user->name }}:</strong> {{ $comment->comment }}</p>
                         <p class="text-sm text-gray-500">{{ $comment->created_at->diffForHumans() }}</p>
                     </div>
-                @endforeach --}}
-
+                @endforeach
+            
                 @if(Auth::check())
                     <form method="POST" action="{{ route('comments.store', ['entry' => $entry]) }}" class="mt-4">
                         @csrf
@@ -66,7 +66,7 @@
                     </form>
                 @else
                     <p class="mt-4 text-gray-500">You must be <a href="{{ route('login') }}" class="text-blue-500">logged in</a> to post a comment.</p>
-                @endif
+                @endif --}}
             </div>
         </div>
     </x-app-layout>
