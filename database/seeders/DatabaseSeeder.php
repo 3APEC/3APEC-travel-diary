@@ -21,7 +21,8 @@ class DatabaseSeeder extends Seeder
             'role_id' => 0,
         ]);
 
-        User::factory(10)->create();
+        // Remove this later on
+        //User::factory(10)->create();
 
         $this->call(DestinationSeeder::class);
         $this->call(EntrySeeder::class);
