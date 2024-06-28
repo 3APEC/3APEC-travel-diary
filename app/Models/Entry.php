@@ -28,11 +28,32 @@ class Entry extends Model
         return $this->hasMany(EntryRating::class);
     }
 
-    // TODO: Add Function for Comments when implemented
+    public function likes(): HasMany
+    {
+        return $this->hasMany(EntryRating::class)->where('isLike', true);
+    }
 
-    // public function comments(): HasMany
-    // {
-    //     return $this->hasMany();
-    // }
+    public function dislikes(): HasMany
+    {
+        return $this->hasMany(EntryRating::class)->where('isDislike', true);
+    }
 
+    public function destination(): BelongsTo
+    {
+        return $this->belongsTo(Destination::class);
+    }
+
+    public function isLiked(): bool
+    {
+        return $this->likes()->where('user_id', auth()->id())->exists();
+    }
+
+    public function isDisliked(): bool
+    {
+        return $this->dislikes()->where('user_id', auth()->id())->exists();
+    }
+
+    public function comments() {
+        return $this->hasMany(Comment::class);
+    }
 }

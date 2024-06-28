@@ -17,7 +17,8 @@ class DestinationFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->city()
+            'name' => fake()->city(),
+            'shortDescription' => fake()->sentence(),
         ];
     }
 }

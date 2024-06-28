@@ -11,6 +11,8 @@ class Destination extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'shortDescription'];
+
     public function entries() : HasMany {
         return $this->hasMany(Entry::class);
     }

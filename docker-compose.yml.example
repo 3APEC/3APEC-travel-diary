@@ -1,0 +1,37 @@
+version: "3"
+services:
+  travel-diary:
+    build:
+      context: .
+    container_name: "travel-diary"
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    volumes:
+      - .:/app
+  mariadb:
+    image: mariadb:latest
+    container_name: "mariadb"
+    restart: "unless-stopped"
+    volumes:
+      - ./data/db:/var/lib/mysql
+    environment:
+      MARIADB_ROOT_PASSWORD: example
+    
+  # If not required comment it out
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: "phpmyadmin"
+    restart: unless-stopped
+    links:
+      - mariadb
+    environment:
+      PMA_HOST: mariadb
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    ports:
+      - 8080:80
+
+
+
+  
