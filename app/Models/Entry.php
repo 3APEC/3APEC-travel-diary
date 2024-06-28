@@ -23,7 +23,7 @@ class Entry extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function rating(): HasMany
+    public function ratings(): HasMany
     {
         return $this->hasMany(EntryRating::class);
     }
