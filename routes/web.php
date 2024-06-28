@@ -21,7 +21,7 @@ Route::get('/', function(){
     return view('home');
 })->name('home');
 
-Route::post('/entries/{entry}/comments', [CommentController::class, 'store'])->name('comments.store');
+//Route::post('/entries/{entry}/comments', [CommentController::class, 'store'])->name('comments.store');
 
 Route::get('/posts/create', [PostController::class, 'create']);
 Route::post('/posts', [PostController::class, 'store']);
